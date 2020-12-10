@@ -1,0 +1,26 @@
+I used this link to trouble shoot my connection:  https://stackoverflow.com/questions/17846529/could-not-open-a-connection-to-your-authentication-agent
+
+Basically followed these steps in the documentation:
+
+MsysGit or Cygwin
+
+If you're using Msysgit or Cygwin you can find a good tutorial at SSH-Agent in msysgit and cygwin and bash( http://anterence.blogspot.com/2012/01/ssh-agent-in-msysgit.html):
+
+    Add a file called .bashrc to your home folder.
+
+    Open the file and paste in:
+
+    #!/bin/bash
+    eval `ssh-agent -s`
+    ssh-add
+
+    This assumes that your key is in the conventional ~/.ssh/id_rsa location. If it isn't, include a full path after the ssh-add command.
+
+    Add to or create file ~/.ssh/config with the contents
+
+    ForwardAgent yes
+
+    In the original tutorial the ForwardAgent param is Yes, but it's a typo. Use all lowercase or you'll get errors.
+
+    Restart Msysgit. It will ask you to enter your passphrase once, and that's it (until you end the session, or your ssh-agent is killed.)
+
